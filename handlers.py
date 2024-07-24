@@ -69,47 +69,47 @@ def setup(router: Router, bot):
         
     @router.callback_query(F.data == "kyiv")
     async def input_kyiv(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost_text, reply_markup = keyboard.author_support_menu_next_kyiv)
+        await clbck.message.answer(text.author_support_cost_text, reply_markup = keyboard.author_support_cost_menu_kyiv)
         
     @router.callback_query(F.data == "kyiv_oblast")
     async def input_kyiv_oblast(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost_text, reply_markup = keyboard.author_support_menu_next_kyiv_oblast)
+        await clbck.message.answer(text.author_support_cost_text, reply_markup = keyboard.author_support_cost_menu_kyiv_oblast)
         
     @router.callback_query(F.data == "what_included")
     async def input_what_included(clbck: CallbackQuery):
         await clbck.message.answer(text.author_support_what_included, reply_markup = keyboard.author_support_previous)
         
-    @router.callback_query(F.data == "service_cost_kyiv")
-    async def input_service_cost_kyiv(clbck: CallbackQuery):
-        await clbck.message.edit_reply_markup(reply_markup = keyboard.author_support_cost_menu_kyiv)
+    # @router.callback_query(F.data == "service_cost_kyiv")
+    # async def input_service_cost_kyiv(clbck: CallbackQuery):
+    #     await clbck.message.edit_reply_markup(reply_markup = keyboard.author_support_cost_menu_kyiv)
         
-    @router.callback_query(F.data == "service_cost_kyiv_oblast")
-    async def input_service_cost_kyiv_oblast(clbck: CallbackQuery):
-        await clbck.message.edit_reply_markup(reply_markup = keyboard.author_support_cost_menu_kyiv_oblast)
+    # @router.callback_query(F.data == "service_cost_kyiv_oblast")
+    # async def input_service_cost_kyiv_oblast(clbck: CallbackQuery):
+    #     await clbck.message.edit_reply_markup(reply_markup = keyboard.author_support_cost_menu_kyiv_oblast)
         
     @router.callback_query(F.data == "author_to_60_kyiv")
     async def input_author_to_60_kyiv(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost["kyiv_to_60"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.author_support_cost["kyiv_to_60"], reply_markup=keyboard.author_exit_menu)
 
     @router.callback_query(F.data == "author_from_60_to_100_kyiv")
     async def input_author_from_60_to_100_kyiv(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost["kyiv_from_60_to_100"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.author_support_cost["kyiv_from_60_to_100"], reply_markup=keyboard.author_exit_menu)
         
     @router.callback_query(F.data == "author_from_100_kyiv")
     async def input_author_from_100_kyiv(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost["kyiv_from_100"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.author_support_cost["kyiv_from_100"], reply_markup=keyboard.author_exit_menu)
         
     @router.callback_query(F.data == "author_to_60_kyiv_oblast")
     async def input_author_to_60_kyiv_oblast(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost["kyiv_oblast_to_60"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.author_support_cost["kyiv_oblast_to_60"], reply_markup=keyboard.author_exit_menu)
 
     @router.callback_query(F.data == "author_from_60_to_100_kyiv_oblast")
     async def input_author_from_60_to_100_kyiv_oblast(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost["kyiv_oblast_from_60_to_100"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.author_support_cost["kyiv_oblast_from_60_to_100"], reply_markup=keyboard.author_exit_menu)
         
     @router.callback_query(F.data == "author_from_100_kyiv_oblast")
     async def input_author_from_100_kyiv_oblast(clbck: CallbackQuery):
-        await clbck.message.answer(text.author_support_cost["kyiv_oblast_from_100"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.author_support_cost["kyiv_oblast_from_100"], reply_markup=keyboard.author_exit_menu)
         
     @router.callback_query(F.data == "project_example")
     async def input_project_example(clbck: CallbackQuery):
