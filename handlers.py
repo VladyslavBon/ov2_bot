@@ -1,18 +1,41 @@
+import pytz
+import os
+
 from aiogram import types, F, Router
 from aiogram.filters import Command
 from aiogram.types.callback_query import CallbackQuery
 from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardRemove
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
 import keyboard
 import text
 from states import Form
 from config import settings
 
+scheduler = AsyncIOScheduler(timezone=pytz.timezone("Europe/Kiev"))
 
-
+if os.path.exists('counter.txt'):
+    with open('counter.txt', 'r') as file:
+        count = int(file.read())
+else:
+    count = 0
+            
 def setup(router: Router, bot):
+    
+    async def send_daily_count():
+        with open('counter.txt', 'r') as file:
+            count = int(file.read())
+        text = f'Загальна кількість запусків бота:  {count}'
+        await bot.send_message(settings.admin_id, text)
+
+    scheduler.add_job(send_daily_count, 'cron', hour=12, minute=0)
+    
     @router.message(Command("start"))
     async def start_handler(msg: types.Message):
+        global count 
+        count += 1
+        with open('counter.txt', 'w') as file:
+            file.write(str(count))
         await msg.answer(
             text.greet, reply_markup=keyboard.menu
         )
