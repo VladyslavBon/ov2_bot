@@ -57,6 +57,9 @@ project_cost_menu = InlineKeyboardMarkup(
 project_cost_next_menu = InlineKeyboardMarkup(
     inline_keyboard=[
         [
+            InlineKeyboardButton(text="📒 Приклад проєкту", callback_data="project_example")
+        ],
+        [
             InlineKeyboardButton(text="🛠️ Авторський супровід", callback_data="author_support")
         ],
         [
@@ -163,6 +166,20 @@ project_example = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text="Переглянути проєкт", url=text.url, callback_data="project_look")
+        ],
+        [
+            InlineKeyboardButton(text="📲 Зворотній звʼязок", callback_data="recall")
+        ],
+        [
+            InlineKeyboardButton(text="◀️ Повернутись на початок", callback_data="menu")
+        ]
+    ]
+)
+
+planning_exit_menu = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text="Що входить у послугу", callback_data="what_included_planning")
         ],
         [
             InlineKeyboardButton(text="📲 Зворотній звʼязок", callback_data="recall")

@@ -7,12 +7,17 @@ from aiogram.types.callback_query import CallbackQuery
 from aiogram.fsm.context import FSMContext
 from aiogram.types import ReplyKeyboardRemove
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
 import keyboard
 import text
 from states import Form
 from config import settings
 
 scheduler = AsyncIOScheduler(timezone=pytz.timezone("Europe/Kiev"))
+
+if not os.path.exists('counter.txt'):
+    with open('counter.txt', 'w') as file:
+        file.write('0')
 
 if os.path.exists('counter.txt'):
     with open('counter.txt', 'r') as file:
@@ -28,7 +33,11 @@ def setup(router: Router, bot):
         text = f'Загальна кількість запусків бота:  {count}'
         await bot.send_message(settings.admin_id, text)
 
-    scheduler.add_job(send_daily_count, 'cron', hour=12, minute=0)
+    scheduler.add_job(
+        send_daily_count,
+        trigger=CronTrigger(hour=12, minute=0),
+        misfire_grace_time=60
+    )
     
     @router.message(Command("start"))
     async def start_handler(msg: types.Message):
@@ -152,19 +161,19 @@ def setup(router: Router, bot):
     
     @router.callback_query(F.data == "to_100_planning")
     async def input_from_60_to_100_planning(clbck: CallbackQuery):
-        await clbck.message.answer(text.planning_cost["to_100_planning"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.planning_cost["to_100_planning"], reply_markup=keyboard.planning_exit_menu)
         
     @router.callback_query(F.data == "from_100_to_200_planning")
     async def input_from_100_to_200_planning(clbck: CallbackQuery):
-        await clbck.message.answer(text.planning_cost["from_100_to_200_planning"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.planning_cost["from_100_to_200_planning"], reply_markup=keyboard.planning_exit_menu)
 
     @router.callback_query(F.data == "from_200_to_300_planning")
     async def input_from_200_to_300_planning(clbck: CallbackQuery):
-        await clbck.message.answer(text.planning_cost["from_200_to_300_planning"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.planning_cost["from_200_to_300_planning"], reply_markup=keyboard.planning_exit_menu)
         
     @router.callback_query(F.data == "from_300_planning")
     async def input_from_300_planning(clbck: CallbackQuery):
-        await clbck.message.answer(text.planning_cost["from_300_planning"], reply_markup=keyboard.exit_menu)
+        await clbck.message.answer(text.planning_cost["from_300_planning"], reply_markup=keyboard.planning_exit_menu)
         
     @router.callback_query(F.data == "project_terms")
     async def input_project_terms(clbck: CallbackQuery):
