@@ -57,7 +57,7 @@ project_cost_menu = InlineKeyboardMarkup(
 project_cost_next_menu = InlineKeyboardMarkup(
     inline_keyboard=[
         [
-            InlineKeyboardButton(text="📒 Приклад проєкту", callback_data="project_example")
+            InlineKeyboardButton(text="📒 Приклад проєкту", url=text.url, callback_data="project_look")
         ],
         [
             InlineKeyboardButton(text="🛠️ Авторський супровід", callback_data="author_support")
@@ -123,7 +123,7 @@ author_support_previous = InlineKeyboardMarkup(
             InlineKeyboardButton(text="📲 Зворотній звʼязок", callback_data="recall")
         ],
         [
-            InlineKeyboardButton(text="◀️ Повернутись назад", callback_data="kyiv")
+            InlineKeyboardButton(text="◀️ Повернутись на початок", callback_data="menu")
         ]
     ]
 )
@@ -201,7 +201,7 @@ exit_menu = InlineKeyboardMarkup(
     ]
 )
 
-author_exit_menu = InlineKeyboardMarkup(
+author_exit_menu_kyiv = InlineKeyboardMarkup(
     inline_keyboard=[
         [
             InlineKeyboardButton(text="Що входить у послугу", callback_data="what_included")
@@ -210,7 +210,21 @@ author_exit_menu = InlineKeyboardMarkup(
             InlineKeyboardButton(text="📲 Зворотній звʼязок", callback_data="recall")
         ],
         [
-            InlineKeyboardButton(text="◀️ Повернутись на початок", callback_data="menu")
+            InlineKeyboardButton(text="◀️ Повернутись назад", callback_data="kyiv")
+        ]
+    ]
+)
+
+author_exit_menu_kyiv_oblast = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text="Що входить у послугу", callback_data="what_included")
+        ],
+        [
+            InlineKeyboardButton(text="📲 Зворотній звʼязок", callback_data="recall")
+        ],
+        [
+            InlineKeyboardButton(text="◀️ Повернутись назад", callback_data="kyiv_oblast")
         ]
     ]
 )
